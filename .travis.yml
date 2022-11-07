@@ -14,4 +14,10 @@ after_success:
   - docker build -t mrshaker/multi-nginx ./nginx
   - docker build -t mrshaker/multi-server ./server
   - docker build -t mrshaker/multi-worker ./worker
+
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --pasword-stdin
+  - docker push mrshaker/multi-client
+  - docker push mrshaker/multi-nginx
+  - docker push mrshaker/multi-server
+  - docker push mrshaker/multi-worker
   
